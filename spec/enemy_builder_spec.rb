@@ -1,27 +1,25 @@
 require_relative '../lib/enemy_builder'
 
 describe 'Enemy Builder class' do 
-	it 'should set an an Enemy object fname to "Conor"' do
+	it 'should create an Enemy object from specified attributes' do
 		enemy_builder = EnemyBuilder.new
-		enemy_builder.set_fname("Conor")
-		expect(enemy_builder.enemy.fname).to eq("Conor")
+		conor =	enemy_builder	.set_fname("Conor")
+								.set_lname("McGregor")
+								.set_nickname("Notorious")
+								.set_rank(1)
+								.build
+		expect(conor.fname).to eq("Conor")
+		expect(conor.lname).to eq("McGregor")
+		expect(conor.nickname).to eq("Notorious")
+		expect(conor.rank).to eq(1)
 	end
 
-	it 'should set an an Enemy object lname to "McGregor"' do
+	it 'should return 2 enemies with different names using one instance of itself' do 
 		enemy_builder = EnemyBuilder.new
-		enemy_builder.set_lname("McGregor")
-		expect(enemy_builder.enemy.lname).to eq("McGregor")
+		enemy_one = enemy_builder.set_fname("Jose").build
+		enemy_two = enemy_builder.set_fname("Conor").build
+		expect(enemy_one.fname).to eq("Jose")
+		expect(enemy_two.fname).to eq("Conor")
 	end
 
-	it 'should set an an Enemy object nickname to "Notorious"' do
-		enemy_builder = EnemyBuilder.new
-		enemy_builder.set_nickname("Notorious")
-		expect(enemy_builder.enemy.nickname).to eq("Notorious")
-	end
-
-	it 'should set an an Enemy object rank to 1' do
-		enemy_builder = EnemyBuilder.new
-		enemy_builder.set_rank(1)
-		expect(enemy_builder.enemy.rank).to eq(1)
-	end
 end
