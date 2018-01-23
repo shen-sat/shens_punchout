@@ -1,9 +1,9 @@
 require_relative '../lib/file_parser'
 
 describe 'File Loader class' do 
-	let(:enemy_fnames_txt)	{File.read("C:/Users/Shen/Desktop/shens_punchout/assets/enemy_first_names.txt")}
-	let(:enemy_lnames_txt)	{File.read("C:/Users/Shen/Desktop/shens_punchout/assets/enemy_last_names.txt")}
-	let(:enemy_nicknames_txt)	{File.read("C:/Users/Shen/Desktop/shens_punchout/assets/enemy_nicknames.txt")}
+	let(:enemy_fnames_txt)	{File.read("C:/Users/Shen/Desktop/Workspace/shens_punchout/assets/enemy_first_names.txt")}
+	let(:enemy_lnames_txt)	{File.read("C:/Users/Shen/Desktop/Workspace/shens_punchout/assets/enemy_last_names.txt")}
+	let(:enemy_nicknames_txt)	{File.read("C:/Users/Shen/Desktop/Workspace/shens_punchout/assets/enemy_nicknames.txt")}
 
 
 	it 'should read and store enemy fnames' do 
