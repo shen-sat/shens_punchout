@@ -1,10 +1,11 @@
 require_relative '../lib/roster_maker'
+require 'spec_helper'
 
 describe 'Roster Maker class' do 
 	let(:fnames)	{["Jose", "Conor", "Max"]}
 	let(:lnames)	{["Aldo", "McGregor", "Holloway"]}
 	let(:nicknames)	{["Junior", "Notorious", "Blessed"]}
-	
+
 	it 'should create a roster with 5 opponents' do 
 		roster_maker = RosterMaker.new(5, fnames,lnames,nicknames)
 		expect(roster_maker.make.fighters.length).to eq(5)
@@ -37,5 +38,7 @@ describe 'Roster Maker class' do
 		expect(nicknames).to include(roster.fighters[0].nickname)
 		expect(nicknames).to include(roster.fighters[1].nickname)			
 	end
+
+	puts RSPEC_ROOT
 
 end
