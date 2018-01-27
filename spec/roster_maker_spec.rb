@@ -39,6 +39,16 @@ describe 'Roster Maker class' do
 		expect(nicknames).to include(roster.fighters[1].nickname)			
 	end
 
-	puts RSPEC_ROOT
+	it 'should create a roster with one enemy with nice and mean traits each between 1-10' do
+		roster_maker = RosterMaker.new(1, fnames.dup, lnames.dup, nicknames.dup)
+		roster = roster_maker.make
+		expect(1..10).to include(roster.fighters[0].traits[:nice])
+		expect(1..10).to include(roster.fighters[0].traits[:mean])			
+	end
 
+	it 'should create a roster with one enemy with an empty hash for memory' do
+		roster_maker = RosterMaker.new(1, fnames.dup, lnames.dup, nicknames.dup)
+		roster = roster_maker.make
+		expect(roster.fighters[0].memory).to eq({})		
+	end
 end

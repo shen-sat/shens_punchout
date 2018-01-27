@@ -21,6 +21,8 @@ class RosterMaker
 										.set_fname(@fnames.delete(fname))
 										.set_lname(@lnames.delete(lname))
 										.set_nickname(@nicknames.delete(nickname))
+										.set_traits({nice: rand(1..10), mean: rand(1..10)})
+										.set_memory({})
 										.build)
 		end
 		Roster.new(chosen)

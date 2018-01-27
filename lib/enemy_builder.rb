@@ -25,6 +25,16 @@ class EnemyBuilder
 		self
 	end
 
+	def set_traits(traits)
+		@enemy.traits = traits
+		self
+	end
+
+	def set_memory(memory)
+		@enemy.memory = memory
+		self
+	end
+
 	def build
 		obj = @enemy
 		@enemy = Enemy.new

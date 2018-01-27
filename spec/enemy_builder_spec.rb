@@ -7,11 +7,16 @@ describe 'Enemy Builder class' do
 								.set_lname("McGregor")
 								.set_nickname("Notorious")
 								.set_rank(1)
+								.set_traits({nice: 1, mean: 7})
+								.set_memory({})
 								.build
 		expect(conor.fname).to eq("Conor")
 		expect(conor.lname).to eq("McGregor")
 		expect(conor.nickname).to eq("Notorious")
 		expect(conor.rank).to eq(1)
+		expect(conor.traits[:nice]).to eq(1)
+		expect(conor.traits[:mean]).to eq(7)
+
 	end
 
 	it 'should return 2 enemies with different names using one instance of itself' do 
