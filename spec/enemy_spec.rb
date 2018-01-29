@@ -36,7 +36,7 @@ describe 'Enemy class during pre-fight stage' do
 		expect(enemy.memory[player]).to eq([0,0,nil])
 	end
 
-	it 'should NOT create a new memory opon meeting a familar oppponent' do 
+	it 'should NOT create a new results record upon meeting a familar oppponent' do 
 		enemy = Enemy.new
 		player = Player.new
 		enemy.memory = {player => [0,1,false]}
@@ -44,7 +44,11 @@ describe 'Enemy class during pre-fight stage' do
 		expect(enemy.memory[player]).to eq([0,1,false])
 	end
 
-	it 'should return true for fight if opponent is of a lower rank' do 
-		
+	it 'should accept fight if challenged by a higher rank fighter' do 
+		enemy = Enemy.new
+		enemy.rank = 10
+		player = Player.new
+		player.rank = 9
+		expect(enemy.accept_fight?(player)).to eq(true) 
 	end	
 end
