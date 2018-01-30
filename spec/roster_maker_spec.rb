@@ -5,6 +5,7 @@ describe 'Roster Maker class' do
 	let(:fnames)	{["Jose", "Conor", "Max"]}
 	let(:lnames)	{["Aldo", "McGregor", "Holloway"]}
 	let(:nicknames)	{["Junior", "Notorious", "Blessed"]}
+	let(:personalities) {[{:char1 => {}}, {:char2 => {}}]}
 
 	it 'should create a roster with 5 opponents' do 
 		roster_maker = RosterMaker.new(5, fnames,lnames,nicknames)
@@ -39,16 +40,19 @@ describe 'Roster Maker class' do
 		expect(nicknames).to include(roster.fighters[1].nickname)			
 	end
 
-	it 'should create a roster with one enemy with nice and mean traits each between 1-10' do
-		roster_maker = RosterMaker.new(1, fnames.dup, lnames.dup, nicknames.dup)
+	it 'should create a roster with two enemies each with a personality of either 1 or 2' do
+		roster_maker = RosterMaker.new(2, fnames.dup, lnames.dup, nicknames.dup, personalities.dup)
 		roster = roster_maker.make
-		expect(1..10).to include(roster.fighters[0].traits[:nice])
-		expect(1..10).to include(roster.fighters[0].traits[:mean])			
+		expect(personalities).to include(roster.fighters[0].personality)
+		expect(personalities).to include(roster.fighters[1].personality)
+		expect(roster.fighters[0].personality).not_to eq(roster.fighters[1].personality)		
 	end
+
 
 	it 'should create a roster with one enemy with an empty hash for memory' do
 		roster_maker = RosterMaker.new(1, fnames.dup, lnames.dup, nicknames.dup)
 		roster = roster_maker.make
 		expect(roster.fighters[0].memory).to eq({})		
 	end
+
 end

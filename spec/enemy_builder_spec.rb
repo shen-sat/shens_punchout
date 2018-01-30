@@ -7,15 +7,15 @@ describe 'Enemy Builder class' do
 								.set_lname("McGregor")
 								.set_nickname("Notorious")
 								.set_rank(1)
-								.set_traits({nice: 1, mean: 7})
+								.set_personality({nice: 1, mean: 7})
 								.set_memory({})
 								.build
 		expect(conor.fname).to eq("Conor")
 		expect(conor.lname).to eq("McGregor")
 		expect(conor.nickname).to eq("Notorious")
 		expect(conor.rank).to eq(1)
-		expect(conor.traits[:nice]).to eq(1)
-		expect(conor.traits[:mean]).to eq(7)
+		expect(conor.personality[:nice]).to eq(1)
+		expect(conor.personality[:mean]).to eq(7)
 
 	end
 

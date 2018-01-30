@@ -7,13 +7,13 @@ describe 'Enemy class' do
 		enemy.lname = "Aldo"
 		enemy.nickname = "Junior"
 		enemy.rank = 0
-		enemy.traits = {nice: 1}
+		enemy.personality = {nice: 1}
 		enemy.memory = {results: {"Frankie" => [2,0]}}
 		expect(enemy.fname).to eq("Jose")
 		expect(enemy.lname).to eq("Aldo")
 		expect(enemy.nickname).to eq("Junior")
 		expect(enemy.rank).to eq(0)
-		expect(enemy.traits[:nice]).to eq(1)
+		expect(enemy.personality[:nice]).to eq(1)
 	end
 
 	
@@ -50,5 +50,13 @@ describe 'Enemy class during pre-fight stage' do
 		player = Player.new
 		player.rank = 9
 		expect(enemy.accept_fight?(player)).to eq(true) 
-	end	
+	end
+
+	it 'should decline fight if challenged by a lower rank fighter' do 
+		enemy = Enemy.new
+		enemy.rank = 3
+		player = Player.new
+		player.rank = 10
+		expect(enemy.accept_fight?(player)).to eq(false) 
+	end		
 end

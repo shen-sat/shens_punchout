@@ -25,8 +25,8 @@ class EnemyBuilder
 		self
 	end
 
-	def set_traits(traits)
-		@enemy.traits = traits
+	def set_personality(personality)
+		@enemy.personality = personality
 		self
 	end
 
