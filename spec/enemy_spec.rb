@@ -51,4 +51,17 @@ describe 'Enemy class during pre-fight stage' do
 		player.rank = 9
 		expect(enemy.accept_fight?(player)).to eq(true) 
 	end	
+
+	it 'should decline fight if opponent is ranked 3 places below' do 
+		enemy = Enemy.new
+		enemy.rank = 7
+		player = Player.new
+		player.rank = 10
+		expect(enemy.accept_fight?(player)).to eq(false) 
+	end
+
+	it 'should accept fight if fighter rank is 8-10 and opponent is ranked nil' do 
+
+	end
+
 end

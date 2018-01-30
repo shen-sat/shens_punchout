@@ -11,4 +11,9 @@ class Enemy < Player
 		create_memory(opp) unless @memory[opp]
 	end
 
+	def accept_fight?(opp)
+		return true if opp.rank < self.rank
+		return false if opp.rank - self.rank > 2		
+	end
+
 end
