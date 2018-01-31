@@ -12,7 +12,11 @@ class Enemy < Player
 	end
 
 	def accept_fight?(challenger)
-		challenger.rank < self.rank ? true : false
+		if challenger.rank < self.rank || challenger.rank - self.rank  <= 2
+			return true
+		else
+			return false
+		end
 	end
 
 end
