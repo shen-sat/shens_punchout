@@ -1,11 +1,18 @@
 class Matchmaker
-	attr_accessor :roster_edit, :challenger
-	def initialize(roster_fighters, challenger)
-		@roster_edit = roster_fighters.reject!{|fighter| fighter==challenger}
+	attr_accessor :fighters, :challenger, :challenged
+	def initialize(roster, challenger)
+		@fighters = roster.fighters.reject!{|fighter| fighter==challenger}
 		@challenger = challenger
 	end
 
-	def make
-
+	def choose
+		@challenged = @fighters.sample
 	end
+
+	def announce
+		return "Upcoming fight: " + 
+		"#{challenged.fname} #{challenged.nickname} #{challenged.lname} to face " + 
+		"#{challenger.fname} #{challenger.nickname} #{challenger.lname}!"
+	end
+
 end
