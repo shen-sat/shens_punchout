@@ -43,6 +43,12 @@ describe 'Matchmaker class' do
 		expect(matchmaker.announce)
 		.to eq("Upcoming fight: Max 'Blessed' Holloway to face Conor 'The Notorious' McGregor!")
 	end
-
+=begin
+	it 'should get Jose to comment on players zero fight record' do 
+		matchmaker = Matchmaker.new(roster, player)
+		jose.personality = 1
+		expect(respon).to include(matchmaker.prefight_press)
+	end
+=end
 
 end

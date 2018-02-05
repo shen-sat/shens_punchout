@@ -9,6 +9,7 @@ class Enemy < Player
 
 	def check_memory(opp)
 		create_memory(opp) unless @memory[opp]
+		return @memory[opp]
 	end
 
 	def accept_fight?(challenger)
