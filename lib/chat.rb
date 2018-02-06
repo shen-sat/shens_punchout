@@ -23,9 +23,9 @@ class Chat
 		end
 		return @catalogue[challenged.personality][x].sample
 	end
-
+=begin
 	def fight_ratio(challenged, challenger)
-		ratio = challenged.memory[challenger][0]/(challenged.memory[challenger][1] + challenged.memory[challenger][0])
+		ratio = challenged.memory[challenger][0].to_f/(challenged.memory[challenger][1] + challenged.memory[challenger][0])
 		puts "Mem is #{challenged.memory[challenger][0]/challenged.memory[challenger][1]}"
 		if ratio >= 0.7
 			x = :ratio_win
@@ -36,4 +36,5 @@ class Chat
 		end
 		return @catalogue[challenged.personality][x].sample
 	end
+=end
 end

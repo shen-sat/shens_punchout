@@ -42,6 +42,15 @@ describe 'chat class' do
 		expect(lost_lines).to include(chat.last_fight(conor,player))
 	end
 
+	it 'should default to acknowledge unknown for an unknown challenger' do 
+		chat = Chat.new(dummy_chat)
+		conor.memory[player] = [0,0,nil]
+		expect(unknown_lines).to include(chat.prefight(conor,player))
+	end
+
+	
+=begin
+#---For when doing ratio chats---
 	it 'should acknowledge when ratio 0.7 in favour of conor' do 
 		chat = Chat.new(dummy_chat)
 		conor.memory[player] = [7,3,false]
@@ -53,19 +62,8 @@ describe 'chat class' do
 		conor.memory[player] = [3,7,false]
 		expect(ratio_lose_lines).to include(chat.fight_ratio(conor,player))
 	end
-	
+=end
 
-	it 'should default to acknowledge unknown for an unknown challenger' do 
-		chat = Chat.new(dummy_chat)
-		conor.memory[player] = [0,0,nil]
-		expect(unknown_lines).to include(chat.prefight(conor,player))
-	end
-
-	it 'should default to acknowledge unknown for an unknown challenger' do 
-		chat = Chat.new(dummy_chat)
-		conor.memory[player] = [0,0,nil]
-		expect(unknown_lines).to include(chat.prefight(conor,player))
-	end
 
 end
 

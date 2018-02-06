@@ -2,9 +2,9 @@ require_relative '../lib/file_parser'
 require 'spec_helper'
 
 describe 'File Loader class' do 
-	let(:enemy_fnames_txt)	{File.read("#{RSPEC_ROOT}/../assets/enemy_first_names.txt")}
-	let(:enemy_lnames_txt)	{File.read("#{RSPEC_ROOT}/../assets/enemy_last_names.txt")}
-	let(:enemy_nicknames_txt)	{File.read("#{RSPEC_ROOT}/../assets/enemy_nicknames.txt")}
+	#let(:enemy_fnames_txt)	{File.read("#{RSPEC_ROOT}/../assets/enemy_first_names.txt")}
+	#let(:enemy_lnames_txt)	{File.read("#{RSPEC_ROOT}/../assets/enemy_last_names.txt")}
+	#let(:enemy_nicknames_txt)	{File.read("#{RSPEC_ROOT}/../assets/enemy_nicknames.txt")}
 	let(:sample_fnames)	{"Max\nConor\nJose"}
 	let(:sample_lnames)	{"Holloway\nMcgregor\nAldo"}
 	let(:sample_nicknames)	{'"Blessed"' + "\n" '"The Notorious"' + "\n" + '"Junior"'}
