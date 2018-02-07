@@ -21,6 +21,7 @@ class FileParser
 				end
 			end
 		end
+		return catalogue
 	end
 
 end
