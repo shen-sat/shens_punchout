@@ -8,6 +8,7 @@ describe 'File Loader class' do
 	let(:sample_fnames)	{"Max\nConor\nJose"}
 	let(:sample_lnames)	{"Holloway\nMcgregor\nAldo"}
 	let(:sample_nicknames)	{'"Blessed"' + "\n" '"The Notorious"' + "\n" + '"Junior"'}
+	let(:mock_spreadsheet)	{File.open('../mocks/mock_spreadsheet.xls')}
 
 
 	
@@ -24,6 +25,15 @@ describe 'File Loader class' do
 	it 'should take in nicknames list and return nicknames array' do 
 		file_parser = FileParser.new(sample_fnames, sample_lnames, sample_nicknames)
 		expect(file_parser.enemy_nicknames).to eq(['"Blessed"', '"The Notorious"', '"Junior"'])
+	end
+
+	it 'should take in spreadsheet and return a dialogue hash' do 
+		file_parser = FileParser.new(sample_fnames, sample_lnames, sample_nicknames, mock_spreadsheet)
+		expect(file_parser.catalogue).to eq({:char_1 => {	:never_met => ["We have never met", "They are unknown"], 
+															:won_last => ["They beat me last", "I lost last time"]
+														}
+														{	:never_met => }
+														})
 	end
 
 =begin
