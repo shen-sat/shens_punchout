@@ -1,5 +1,6 @@
 require_relative '../lib/file_parser'
 require 'spec_helper'
+File.open('C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/spreadsheet-1.1.5/lib/spreadsheet.rb')
 
 describe 'File Loader class' do 
 	#let(:enemy_fnames_txt)	{File.read("#{RSPEC_ROOT}/../assets/enemy_first_names.txt")}
@@ -8,7 +9,7 @@ describe 'File Loader class' do
 	let(:sample_fnames)	{"Max\nConor\nJose"}
 	let(:sample_lnames)	{"Holloway\nMcgregor\nAldo"}
 	let(:sample_nicknames)	{'"Blessed"' + "\n" '"The Notorious"' + "\n" + '"Junior"'}
-	let(:mock_spreadsheet)	{File.open('../mocks/mock_spreadsheet.xls')}
+	let(:mock_spreadsheet)	{File.open('#{RSPEC_ROOT}/../mocks/mock_spreadsheet.xls')}
 
 
 	
@@ -29,11 +30,12 @@ describe 'File Loader class' do
 
 	it 'should take in spreadsheet and return a dialogue hash' do 
 		file_parser = FileParser.new(sample_fnames, sample_lnames, sample_nicknames, mock_spreadsheet)
-		expect(file_parser.catalogue).to eq({:char_1 => {	:never_met => ["We have never met", "They are unknown"], 
-															:won_last => ["They beat me last", "I lost last time"]
-														}
-														{	:never_met => }
-														})
+		expect(file_parser.catalogue).to eq({
+			:char_1 => { 	:never_met => ["We have never met", "They are unknown"], 
+							:won_last => ["They beat me last", "I lost last time"]},
+			:char_2 => { 	:never_met => ["We have never bloody met", "They are bloody unknown"], 
+							:won_last => ["They bloody beat me last", "I bloody lost last time"]} 
+			})
 	end
 
 =begin
