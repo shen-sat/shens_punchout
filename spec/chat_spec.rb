@@ -4,24 +4,18 @@ describe 'chat class' do
 	let(:unknown_lines)	{["We've never met","Don't know them"]}
 	let(:won_lines)		{["I beat em", "They lost last time"]}
 	let(:lost_lines)	{["They beat me", "I failed last time"]}
-	let (:ratio_win_lines)	{["I'm confident I'll win as usual", "Odds are against them"]}
-	let (:ratio_lose_lines)	{["They tend to beat me", "I'll cause an upset"]}
-	let (:ratio_even_lines)	{["We're well-matched", "Difficult to choose between us"]}
+	let(:unknown_lines_j)	{["Never met this amigo","Don't know this amigo"]}
+	let(:won_lines_j)		{["I beat amigo", "Amigo lost last time"]}
+	let(:lost_lines_j)	{["Amigo beat me", "I lost last time"]}
 	let(:dummy_chat)	{ 	{1 =>	{
 									:never_met => unknown_lines, 
 									:won_last => won_lines,
-									:lost_last => lost_lines,
-									:ratio_win => ratio_win_lines,
-									:ratio_lose => ratio_lose_lines,
-									:ratio_even => ratio_even_lines
+									:lost_last => lost_lines
 									},
 							2 => 	{
-									:never_met => unknown_lines, 
-									:won_last => won_lines,
-									:lost_last => lost_lines,
-									:ratio_win => ratio_win_lines,
-									:ratio_lose => ratio_lose_lines,
-									:ratio_even => ratio_even_lines									}	
+									:never_met => unknown_lines_j, 
+									:won_last => won_lines_j,
+									:lost_last => lost_lines_j								}	
 							}
 
 						}
@@ -81,17 +75,34 @@ describe 'chat class' do
 	end
 
 	context 'when conor is challenged and jose is challenger' do
-		it 'should say "Weve never met"or "Dont know them" when conor meeting jose for first time prefight' do 
-			chat = Chat.new(dummy_chat)
-			conor.memory[jose] = [0,0,nil]
-			expect(unknown_lines).to include(chat.last_fight(conor,jose)[0])
-		end
-
-		it 'should say "Weve never met" or "Dont know them" when jose meeting conor for first time prefight' do 
+		it 'conor should say "Weve never met"or "Dont know them" when meeting jose for first time prefight' do 
 			chat = Chat.new(dummy_chat)
 			conor.memory[jose] = [0,0,nil]
 			jose.memory[conor] = [0,0,nil]
-			expect(unknown_lines).to include(chat.last_fight(conor,jose)[1])
+			expect(unknown_lines).to include(chat.last_fight(conor,jose)[0])
+		end
+
+		it 'jose should say "Never met this amigo" or "Dont know this amigo" when meeting conor for first time prefight' do 
+			chat = Chat.new(dummy_chat)
+			conor.memory[jose] = [0,0,nil]
+			jose.memory[conor] = [0,0,nil]
+			expect(unknown_lines_j).to include(chat.last_fight(conor,jose)[1])
+		end
+
+		it 'jose should say "I beat amigo" or "Amigo lost last time" if he beat conor last fight and conor should say vice versa' do 
+			chat = Chat.new(dummy_chat)
+			conor.memory[jose] = [0,1,false]
+			jose.memory[conor] = [1,0,true]
+			expect(won_lines_j).to include(chat.last_fight(conor,jose)[1])
+			expect(lost_lines).to include(chat.last_fight(conor,jose)[0])
+		end
+
+		it 'jose should say "Amigo beat me" or "I lost last time" if he lost to conor last fight and conor should say vice versa' do 
+			chat = Chat.new(dummy_chat)
+			conor.memory[jose] = [1,0,true]
+			jose.memory[conor] = [0,1,false]
+			expect(lost_lines_j).to include(chat.last_fight(conor,jose)[1])
+			expect(won_lines).to include(chat.last_fight(conor,jose)[0])
 		end
 	end
 

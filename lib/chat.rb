@@ -13,17 +13,20 @@ class Chat
 
 	def last_fight(challenged, challenger)
 		statements = []
-		challenged_result = challenged.memory[challenger][2]
-		#challenger_result = challenger.memory[challenged][2]
-		case challenged_result
+		result = challenged.memory[challenger][2]
+		case result
 		when true
-			x = :won_last
+			a = :won_last
+			b = :lost_last
 		when false
-			x = :lost_last
+			a = :lost_last
+			b = :won_last
 		else
-			x = :never_met
+			a = :never_met
+			b = a
 		end
-		statements.push(@catalogue[challenged.personality][x].sample)
+		statements.push(@catalogue[challenged.personality][a].sample)
+		statements.push(@catalogue[challenger.personality][b].sample) unless !challenger.is_a?(Enemy)
 		return statements
 	end
 =begin
