@@ -14,17 +14,17 @@ describe 'File Loader class' do
 
 	
 	it 'should take in fnames list and return fnames array' do 
-		file_parser = FileParser.new(sample_fnames, sample_lnames, sample_nicknames)
+		file_parser = FileParser.new(sample_fnames, sample_lnames, sample_nicknames, mock_spreadsheet)
 		expect(file_parser.enemy_fnames).to eq(["Max", "Conor", "Jose"])
 	end
 
 	it 'should take in lnames list and return lnames array' do 
-		file_parser = FileParser.new(sample_fnames, sample_lnames, sample_nicknames)
+		file_parser = FileParser.new(sample_fnames, sample_lnames, sample_nicknames, mock_spreadsheet)
 		expect(file_parser.enemy_lnames).to eq(["Holloway", "Mcgregor", "Aldo"])
 	end
 
 	it 'should take in nicknames list and return nicknames array' do 
-		file_parser = FileParser.new(sample_fnames, sample_lnames, sample_nicknames)
+		file_parser = FileParser.new(sample_fnames, sample_lnames, sample_nicknames, mock_spreadsheet)
 		expect(file_parser.enemy_nicknames).to eq(['"Blessed"', '"The Notorious"', '"Junior"'])
 	end
 

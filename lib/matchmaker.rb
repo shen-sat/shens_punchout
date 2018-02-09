@@ -9,6 +9,11 @@ class Matchmaker
 		@challenged = @fighters.sample
 	end
 
+	def meet
+		@challenged.check_memory(@challenger)
+		@challenger.check_memory(@challenged)
+	end
+
 	def announce
 		return "Upcoming fight: " + 
 		"#{challenged.fname} #{challenged.nickname} #{challenged.lname} to face " + 

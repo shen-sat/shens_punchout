@@ -12,8 +12,10 @@ class Chat
 	end
 
 	def last_fight(challenged, challenger)
-		result = challenged.check_memory(challenger)[2]
-		case result
+		statements = []
+		challenged_result = challenged.memory[challenger][2]
+		#challenger_result = challenger.memory[challenged][2]
+		case challenged_result
 		when true
 			x = :won_last
 		when false
@@ -21,7 +23,8 @@ class Chat
 		else
 			x = :never_met
 		end
-		return @catalogue[challenged.personality][x].sample
+		statements.push(@catalogue[challenged.personality][x].sample)
+		return statements
 	end
 =begin
 	def fight_ratio(challenged, challenger)

@@ -2,8 +2,8 @@ require_relative '../lib/matchmaker'
 
 describe 'Matchmaker class' do 
 	let(:player)	{Player.new}
-	let(:conor) 	{EnemyBuilder.new.set_fname("Conor").set_lname("McGregor").set_nickname("'The Notorious'").build}
-	let(:jose) 		{EnemyBuilder.new.set_fname("Jose").set_lname("Aldo").set_nickname("'Junior'").build}
+	let(:conor) 	{EnemyBuilder.new.set_fname("Conor").set_lname("McGregor").set_nickname("'The Notorious'").set_memory({}).build}
+	let(:jose) 		{EnemyBuilder.new.set_fname("Jose").set_lname("Aldo").set_nickname("'Junior'").set_memory({}).build}
 	let(:max) 		{EnemyBuilder.new.set_fname("Max").set_lname("Holloway").set_nickname("'Blessed'").build}
 	let(:roster)	{Roster.new([conor, jose, max, player])}
 
@@ -13,6 +13,7 @@ describe 'Matchmaker class' do
 		expect(matchmaker.fighters).to eq(roster.fighters)
 		expect(matchmaker.challenger).to eq(player)
 	end
+
 
 	it 'should initialize with roster and enemy' do 
 		matchmaker = Matchmaker.new(roster, conor)
@@ -26,6 +27,15 @@ describe 'Matchmaker class' do
 		matchmaker.choose
 		expect(matchmaker.challenged).to eq(conor).or eq(jose).or eq(max)
 	end
+
+	it 'should acknowledge in conors and joses memory when meeting each other for first time' do 
+		matchmaker = Matchmaker.new(roster, jose)
+		matchmaker.challenged = conor
+		matchmaker.meet
+		expect(conor.memory[jose]).to eq([0,0,nil])
+		expect(jose.memory[conor]).to eq([0,0,nil])
+	end
+
 
 	it 'should state Jose is fighting player, Shen' do 
 		player.fname = "Shen"
@@ -43,12 +53,6 @@ describe 'Matchmaker class' do
 		expect(matchmaker.announce)
 		.to eq("Upcoming fight: Max 'Blessed' Holloway to face Conor 'The Notorious' McGregor!")
 	end
-=begin
-	it 'should get Jose to comment on players zero fight record' do 
-		matchmaker = Matchmaker.new(roster, player)
-		jose.personality = 1
-		expect(respon).to include(matchmaker.prefight_press)
-	end
-=end
+
 
 end
