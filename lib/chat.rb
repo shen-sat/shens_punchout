@@ -5,12 +5,6 @@ class Chat
 		@catalogue = catalogue
 	end
 
-
-
-	def prefight(challenged, challenger)
-		last_fight(challenged, challenger)
-	end
-
 	def last_fight(challenged, challenger)
 		statements = []
 		result = challenged.memory[challenger][2]

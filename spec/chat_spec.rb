@@ -36,42 +36,26 @@ describe 'chat class' do
 		end
 	end
 
-	context 'when enemy is challenged and player is challenger' do 
-		it 'should say "Weve never met"or "Dont know them" for an unknown challenger prefight' do 
+	context 'when enemy is challenged and player is challenger prefight' do 
+		it 'conor should say "Weve never met" or "Dont know them" for an unknown player' do 
 			chat = Chat.new(dummy_chat)
 			conor.memory[player] = [0,0,nil]
 			expect(unknown_lines).to include(chat.last_fight(conor,player)[0])
 		end
 
-		it 'should say "I beat em" or "They lost last time" when they last beat known challenger prefight' do 
+		it 'conor should say "I beat em" or "They lost last time" when they last beat known player' do 
 			chat = Chat.new(dummy_chat)
 			conor.memory[player] = [1,0,true]
 			expect(won_lines).to include(chat.last_fight(conor,player)[0])
 		end
 
-		it 'should say "They beat me" or "I failed last time" when they last lost to known challenger prefight' do 
+		it 'conor should say "They beat me" or "I failed last time" when they last lost to known player' do 
 			chat = Chat.new(dummy_chat)
 			conor.memory[player] = [0,1,false]
 			expect(lost_lines).to include(chat.last_fight(conor,player)[0])
 		end
 
-		it 'should default to acknowledge unknown for an unknown challenger prefight' do 
-			chat = Chat.new(dummy_chat)
-			conor.memory[player] = [0,0,nil]
-			expect(unknown_lines).to include(chat.prefight(conor,player)[0])
-		end
 
-		it 'should default to acknowledge last result if it was a loss to a known opponent prefight' do 
-			chat = Chat.new(dummy_chat)
-			conor.memory[player] = [0,1,false]
-			expect(lost_lines).to include(chat.prefight(conor,player)[0])
-		end
-
-		it 'should default to acknowledge last result if it was a win against a known opponent prefight' do 
-			chat = Chat.new(dummy_chat)
-			conor.memory[player] = [1,0,true]
-			expect(won_lines).to include(chat.prefight(conor,player)[0])
-		end
 	end
 
 	context 'when conor is challenged and jose is challenger' do
@@ -104,6 +88,7 @@ describe 'chat class' do
 			expect(lost_lines_j).to include(chat.last_fight(conor,jose)[1])
 			expect(won_lines).to include(chat.last_fight(conor,jose)[0])
 		end
+
 	end
 
 
