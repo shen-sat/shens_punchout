@@ -23,6 +23,12 @@ class Chat
 		statements.push(@catalogue[challenger.personality][b].sample) unless !challenger.is_a?(Enemy)
 		return statements
 	end
+
+	def postfight(winner,loser)
+		statements = []
+		statements.push(@catalogue[winner.personality][:post_win].sample)
+		return statements
+	end
 =begin
 	def fight_ratio(challenged, challenger)
 		ratio = challenged.memory[challenger][0].to_f/(challenged.memory[challenger][1] + challenged.memory[challenger][0])
