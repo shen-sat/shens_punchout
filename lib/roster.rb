@@ -8,4 +8,14 @@ class Roster
 	def add(fighter)
 		fighters.push(fighter)
 	end
+
+	def see
+		table = ""
+		fighters_sorted = fighters.sort_by {|fighter| fighter.rank}
+		fighters_sorted.each do |fighter|
+			row = "#{fighter.fname} #{fighter.nickname} #{fighter.lname}, #{fighter.rank}\n"
+			table << row
+		end
+		puts table
+	end
 end

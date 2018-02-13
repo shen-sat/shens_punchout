@@ -99,9 +99,22 @@ describe 'chat class' do
 	end
 
 	context 'after conor fights jose postfight' do 
-		it 'conor should say he won if he beat jose' do 
+		it 'conor should say he won if he beat jose, and jose vice versa' do 
 			chat = Chat.new(dummy_chat)
 			expect(post_win_lines).to include(chat.postfight(conor,jose)[0])
+			expect(post_loss_lines_j).to include(chat.postfight(conor,jose)[1])
+		end
+	end
+
+	context 'after conor fights player postfight' do 
+		it 'conor should say he won if he beat player' do 
+			chat = Chat.new(dummy_chat)
+			expect(post_win_lines).to include(chat.postfight(conor,player)[0])
+		end
+
+		it 'conor should say he lost if he lost' do 
+			chat = Chat.new(dummy_chat)
+			expect(post_loss_lines).to include(chat.postfight(player, conor)[0])
 		end
 	end
 

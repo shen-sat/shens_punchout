@@ -26,21 +26,9 @@ class Chat
 
 	def postfight(winner,loser)
 		statements = []
-		statements.push(@catalogue[winner.personality][:post_win].sample)
+		statements.push(@catalogue[winner.personality][:post_win].sample) unless !winner.is_a?(Enemy)
+		statements.push(@catalogue[loser.personality][:post_loss].sample) unless !loser.is_a?(Enemy)
 		return statements
 	end
-=begin
-	def fight_ratio(challenged, challenger)
-		ratio = challenged.memory[challenger][0].to_f/(challenged.memory[challenger][1] + challenged.memory[challenger][0])
-		puts "Mem is #{challenged.memory[challenger][0]/challenged.memory[challenger][1]}"
-		if ratio >= 0.7
-			x = :ratio_win
-		elsif ratio <= 0.3
-			x = :ratio_lose
-		else
-			x = :ratio_even
-		end
-		return @catalogue[challenged.personality][x].sample
-	end
-=end
+
 end
