@@ -1,8 +1,8 @@
 class PostFight
 	attr_accessor :winner, :loser
-	def initialize(winner, loser)
-		@winner = winner
-		@loser = loser
+	def initialize(result)
+		@winner = result[0]
+		@loser = result[1]
 	end
 
 	def level_up

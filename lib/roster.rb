@@ -16,6 +16,6 @@ class Roster
 			row = "#{fighter.fname} #{fighter.nickname} #{fighter.lname}, #{fighter.rank}\n"
 			table << row
 		end
-		puts table
+		return table
 	end
 end
