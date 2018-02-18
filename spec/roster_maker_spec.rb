@@ -9,10 +9,10 @@ describe 'Roster Maker class' do
 
 	it 'should create a roster with 5 opponents' do 
 		roster_maker = RosterMaker.new(5, fnames,lnames,nicknames, personalities)
-		expect(roster_maker.make.fighters.length).to eq(5)
+		expect(roster_maker.make.fighters.length).to eq(4)
 	end
 	it 'should create a roster with 3 ranked opponents, 0-2' do 
-		roster_maker = RosterMaker.new(3,fnames,lnames,nicknames, personalities)
+		roster_maker = RosterMaker.new(4,fnames,lnames,nicknames, personalities)
 		roster = roster_maker.make
 		expect(roster.fighters[0].rank).to eq(0)
 		expect(roster.fighters[1].rank).to eq(1)
@@ -20,28 +20,28 @@ describe 'Roster Maker class' do
 	end	
 
 	it 'should create a roster with 2 random first names' do
-		roster_maker = RosterMaker.new(2, fnames.dup, lnames,nicknames, personalities)
+		roster_maker = RosterMaker.new(3, fnames.dup, lnames,nicknames, personalities)
 		roster = roster_maker.make
 		expect(fnames).to include(roster.fighters[0].fname)
 		expect(fnames).to include(roster.fighters[1].fname)			
 	end
 
 	it 'should create a roster with 2 random last names' do
-		roster_maker = RosterMaker.new(2, fnames.dup, lnames.dup,nicknames, personalities)
+		roster_maker = RosterMaker.new(3, fnames.dup, lnames.dup,nicknames, personalities)
 		roster = roster_maker.make
 		expect(lnames).to include(roster.fighters[0].lname)
 		expect(lnames).to include(roster.fighters[1].lname)			
 	end
 
 	it 'should create a roster with 2 random nicknames' do
-		roster_maker = RosterMaker.new(2, fnames.dup, lnames.dup, nicknames.dup, personalities)
+		roster_maker = RosterMaker.new(3, fnames.dup, lnames.dup, nicknames.dup, personalities)
 		roster = roster_maker.make
 		expect(nicknames).to include(roster.fighters[0].nickname)
 		expect(nicknames).to include(roster.fighters[1].nickname)			
 	end
 
 	it 'should create a roster with two enemies each with a personality of either 1 or 2' do
-		roster_maker = RosterMaker.new(2, fnames.dup, lnames.dup, nicknames.dup, personalities.dup)
+		roster_maker = RosterMaker.new(3, fnames.dup, lnames.dup, nicknames.dup, personalities.dup)
 		roster = roster_maker.make
 		expect(personalities).to include(roster.fighters[0].personality)
 		expect(personalities).to include(roster.fighters[1].personality)
@@ -50,9 +50,16 @@ describe 'Roster Maker class' do
 
 
 	it 'should create a roster with one enemy with an empty hash for memory' do
-		roster_maker = RosterMaker.new(1, fnames.dup, lnames.dup, nicknames.dup, personalities)
+		roster_maker = RosterMaker.new(2, fnames.dup, lnames.dup, nicknames.dup, personalities)
 		roster = roster_maker.make
 		expect(roster.fighters[0].memory).to eq({})		
+	end
+
+	it 'should add player to roster' do 
+		roster_maker = RosterMaker.new(2, fnames.dup, lnames.dup, nicknames.dup, personalities)
+		player = Player.new
+		roster = roster_maker.add_player(roster_maker.make, player)
+		expect(roster.fighters).to include(player)
 	end
 
 end

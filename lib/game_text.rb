@@ -1,5 +1,5 @@
 class GameText
-	def initialize
+	def welcome
 		welcome_1 = "Welcome to Shen's PunchOut!\n"
        	welcome_2 = "In this game you will play a new, up-and-coming fighter.\n"
        	welcome_3 = "The other fighters in your roster are randomly generated, with unique personalities. 
@@ -18,6 +18,10 @@ class GameText
 
 	def ask_nickname
 		return "Please enter your nickname:"
+	end
+
+	def ask_rank
+		return "Please enter your rank:"
 	end
 
 	def ask_roster_size

@@ -1,8 +1,8 @@
 class RosterMaker
 	attr_reader
 	def initialize(size, fnames, lnames, nicknames, personalities)
-		@size = size
-		@ranks = (0..(size-1)).to_a
+		@size = size - 1
+		@ranks = (0..(size-2)).to_a
 		@fnames = fnames
 		@lnames = lnames
 		@nicknames = nicknames
@@ -28,6 +28,11 @@ class RosterMaker
 										.build)
 		end
 		Roster.new(chosen)
+	end
+
+	def add_player(roster, player)
+		roster.fighters.push(player)
+		return roster
 	end
 
 end
