@@ -36,5 +36,13 @@ describe 'Roster class' do
 		player.rank = 2
 		roster = Roster.new([jose,conor,player])
 		expect(roster.see).to eq("Conor 'The Notorious' McGregor, 0\nJose 'Junior' Aldo, 1\nShen 'The Sleepy' Shamps, 2\n")
+	end
+
+	it 'should add player' do 
+		chosen = [Enemy.new, Enemy.new]
+		roster = Roster.new(chosen)
+		player = Player.new
+		roster.add_player(player)
+		expect(roster.fighters).to include(player)
 	end	
 end

@@ -18,4 +18,8 @@ class Roster
 		end
 		return table
 	end
+
+	def add_player(player)
+		@fighters.push(player)
+	end
 end
