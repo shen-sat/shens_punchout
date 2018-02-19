@@ -42,7 +42,14 @@ puts game_text.ask_rank
 rank = "10"
 player = PlayerBuilder.new.set_fname(fname).set_lname(lname).set_nickname(nickname).set_rank(rank).build
 
+
 puts "A new fighter enters the stage: #{player.fname} #{player.nickname} #{player.lname}, with a rank of #{player.rank}!"
+puts "Press Enter to continue"
+loop do 
+	break if gets.chomp == ""
+end
+system('cls')
+
 roster.add_player(player)
 puts "Roster created. Would you like to see your fellow fighters? Y/N"
 puts roster.see
@@ -55,15 +62,17 @@ puts matchmaker.announce
 #puts chat.catalogue[1][:never_met]
 puts "Press release from #{matchmaker.challenged.fname}: #{chat.last_fight(matchmaker.challenged,matchmaker.challenger)[0]}" 
 fight = Fight.new(matchmaker.challenged, matchmaker.challenger)
-puts "Challenged rank is: #{matchmaker.challenged.rank}"
 puts "Fight outcome - challenged retains rank? Type true or false:"
-post_fight = PostFight.new(fight.retain_rank(gets.chomp))
+post_fight = PostFight.new(fight.retain_rank("false"))
 post_fight.level_up
-puts "#{post_fight.winner.fname} rank is: #{post_fight.winner.rank}"
 post_fight.amend_memories
-
-
 puts "Post-fight press release from #{post_fight.winner.fname}: #{chat.postfight(post_fight.winner, post_fight.loser)[0]}" unless !post_fight.winner.is_a?(Enemy)
 puts "Post-fight press release from #{post_fight.loser.fname}: #{chat.postfight(post_fight.winner, post_fight.loser)[0]}" unless !post_fight.loser.is_a?(Enemy)
+
+#Clear screen
+#system('cls')
+
+
+
 
 

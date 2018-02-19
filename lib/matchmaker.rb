@@ -1,7 +1,7 @@
 class Matchmaker
 	attr_accessor :fighters, :challenger, :challenged
 	def initialize(roster, challenger)
-		@fighters = roster.fighters.reject!{|fighter| fighter==challenger}
+		@fighters = roster.fighters.reject{|fighter| fighter==challenger}
 		@challenger = challenger
 	end
 
