@@ -31,10 +31,10 @@ describe 'File Loader class' do
 	it 'should take in spreadsheet and return a dialogue hash' do 
 		file_parser = FileParser.new(sample_fnames, sample_lnames, sample_nicknames, mock_spreadsheet)
 		expect(file_parser.catalogue).to eq({
-			:char_1 => { 	:never_met => ["We have never met", "They are unknown"], 
-							:won_last => ["They beat me last", "I lost last time"]},
-			:char_2 => { 	:never_met => ["We have never bloody met", "They are bloody unknown"], 
-							:won_last => ["They bloody beat me last", "I bloody lost last time"]} 
+			1 => { 	:never_met => ["We have never met", "They are unknown"], 
+					:won_last => ["They beat me last", "I lost last time"]},
+			2 => { 	:never_met => ["We have never bloody met", "They are bloody unknown"], 
+					:won_last => ["They bloody beat me last", "I bloody lost last time"]} 
 			})
 	end
 

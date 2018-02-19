@@ -11,7 +11,7 @@ class Matchmaker
 
 	def meet
 		@challenged.check_memory(@challenger)
-		@challenger.check_memory(@challenged)
+		@challenger.check_memory(@challenged) unless !@challenger.is_a?(Enemy)
 	end
 
 	def announce

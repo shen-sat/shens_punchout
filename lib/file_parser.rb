@@ -13,11 +13,11 @@ class FileParser
 		book = Spreadsheet.open spreadsheet
 		catalogue = {}
 		book.worksheets.each do |sheet|
-			catalogue[sheet.name.to_sym] = {}
+			catalogue[sheet.name.to_i] = {}
 			sheet.each do |row|
-				catalogue[sheet.name.to_sym][row[0].to_sym] = [] unless row[0].nil?
+				catalogue[sheet.name.to_i][row[0].to_sym] = [] unless row[0].nil?
 				row.each do |cell|
-					catalogue[sheet.name.to_sym][row[0].to_sym].push(cell) unless (cell.nil? || cell == row[0])
+					catalogue[sheet.name.to_i][row[0].to_sym].push(cell) unless (cell.nil? || cell == row[0])
 				end
 			end
 		end

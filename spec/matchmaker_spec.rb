@@ -36,6 +36,13 @@ describe 'Matchmaker class' do
 		expect(jose.memory[conor]).to eq([0,0,nil])
 	end
 
+	it 'should NOT acknowledge in players memory when meeting conor for 1st time, but should acknowledge in conors' do
+		matchmaker = Matchmaker.new(roster, player)
+		matchmaker.challenged = conor
+		matchmaker.meet
+		expect(conor.memory[player]).to eq([0,0,nil])
+	end
+
 
 	it 'should state Jose is fighting player, Shen' do 
 		player.fname = "Shen"
