@@ -6,7 +6,7 @@ describe 'Player Builder class' do
 		player = player_builder	.set_fname("Shen")
 								.set_lname("Shamps")
 								.set_nickname("The Sleepy")
-								.set_rank(10)
+								.set_rank("10")
 								.build
 		expect(player.fname).to eq("Shen")
 		expect(player.lname).to eq("Shamps")

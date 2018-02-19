@@ -6,6 +6,7 @@ require_relative './roster_maker'
 require_relative './enemy_builder'
 require_relative './enemy'
 require_relative './roster'
+require_relative './matchmaker'
 require 'spreadsheet'
 
 fnames = File.read('../assets/enemy_first_names.txt')
@@ -28,19 +29,25 @@ player_setup_done = false
 
 
 puts game_text.ask_fname
-fname = gets.chomp
+fname = "Shen"
 puts game_text.ask_lname
-lname = gets.chomp
+lname = "Sat"
 puts game_text.ask_nickname
-nickname = gets.chomp
+nickname = "Sleep"
 puts game_text.ask_rank
-rank = gets.chomp
+rank = "10"
 player = PlayerBuilder.new.set_fname(fname).set_lname(lname).set_nickname(nickname).set_rank(rank).build
 
 puts "A new fighter enters the stage: #{player.fname} #{player.nickname} #{player.lname}, with a rank of #{player.rank}!"
-
 roster.add_player(player)
-puts roster.fighters.last.fname
+puts "Roster created. Would you like to see your fellow fighters? Y/N"
+puts roster.see
+
+matchmaker = Matchmaker.new(roster, player)
+matchmaker.choose
+matchmaker.meet
+matchmaker.announce
+
 
 
 

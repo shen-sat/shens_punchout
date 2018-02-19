@@ -19,7 +19,7 @@ class PlayerBuilder
 	end
 
 	def set_rank(rank)
-		@player.rank = rank
+		@player.rank = rank.to_i
 		self
 	end
 
