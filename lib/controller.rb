@@ -37,16 +37,16 @@ end
 system('cls')
 
 puts game_text.ask_fname
-fname = "Shen"
+fname = gets.chomp
 puts game_text.ask_lname
-lname = "Sat"
+lname = gets.chomp
 puts game_text.ask_nickname
-nickname = "Sleep"
+nickname = gets.chomp
 puts game_text.ask_rank
-rank = "10"
+rank = gets.chomp
 player = PlayerBuilder.new.set_fname(fname).set_lname(lname).set_nickname(nickname).set_rank(rank).build
 
-
+puts ""
 puts "A new fighter enters the stage: #{player.fname} #{player.nickname} #{player.lname}, with a rank of #{player.rank}!"
 puts ""
 puts "Press Enter to continue"
@@ -65,7 +65,10 @@ loop do
 		break if roster_answer =="y" || roster_answer =="n"
 	end
 	if roster_answer == "y"
+		puts ""
+		puts "---ROSTER---"
 		puts roster.see
+		puts ""
 		puts "Press Enter to continue:"
 		loop do 
 			break if gets.chomp == ""
