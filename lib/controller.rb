@@ -26,11 +26,15 @@ roster = RosterMaker.new(	roster_size,
 							file_parser.enemy_nicknames).make
 
 
+system('cls')
 game_text = GameText.new
 puts game_text.welcome
-
-player_setup_done = false
-
+puts ""
+puts "Press Enter to continue:"
+loop do 
+	break if gets.chomp == ""
+end
+system('cls')
 
 puts game_text.ask_fname
 fname = "Shen"
@@ -44,6 +48,7 @@ player = PlayerBuilder.new.set_fname(fname).set_lname(lname).set_nickname(nickna
 
 
 puts "A new fighter enters the stage: #{player.fname} #{player.nickname} #{player.lname}, with a rank of #{player.rank}!"
+puts ""
 puts "Press Enter to continue"
 loop do 
 	break if gets.chomp == ""
@@ -51,27 +56,61 @@ end
 system('cls')
 
 roster.add_player(player)
-puts "Roster created. Would you like to see your fellow fighters? Y/N"
-puts roster.see
 
-matchmaker = Matchmaker.new(roster, player)
-matchmaker.choose
-matchmaker.meet
-puts matchmaker.announce
+loop do 
+	puts "Would you like to see the fighters roster? Y/N"
+	roster_answer = ""
+	loop do 
+		roster_answer = gets.chomp
+		break if roster_answer =="y" || roster_answer =="n"
+	end
+	if roster_answer == "y"
+		puts roster.see
+		puts "Press Enter to continue:"
+		loop do 
+			break if gets.chomp == ""
+		end
+	end
 
-#puts chat.catalogue[1][:never_met]
-puts "Press release from #{matchmaker.challenged.fname}: #{chat.last_fight(matchmaker.challenged,matchmaker.challenger)[0]}" 
-fight = Fight.new(matchmaker.challenged, matchmaker.challenger)
-puts "Fight outcome - challenged retains rank? Type true or false:"
-post_fight = PostFight.new(fight.retain_rank("false"))
-post_fight.level_up
-post_fight.amend_memories
-puts "Post-fight press release from #{post_fight.winner.fname}: #{chat.postfight(post_fight.winner, post_fight.loser)[0]}" unless !post_fight.winner.is_a?(Enemy)
-puts "Post-fight press release from #{post_fight.loser.fname}: #{chat.postfight(post_fight.winner, post_fight.loser)[0]}" unless !post_fight.loser.is_a?(Enemy)
+	system('cls')
 
-#Clear screen
-#system('cls')
+	matchmaker = Matchmaker.new(roster, player)
+	matchmaker.choose
+	matchmaker.meet
+	puts matchmaker.announce
 
+	puts "Press release from #{matchmaker.challenged.fname}: " + '"' + "#{chat.last_fight(matchmaker.challenged,matchmaker.challenger)[0]}" + '"'
+	puts ""
+	puts "Press Enter to continue"
+
+	loop do 
+		break if gets.chomp == ""
+	end
+	system('cls')
+
+
+	fight = Fight.new(matchmaker.challenged, matchmaker.challenger)
+	puts "[This is a fight placeholder] Does player win fight? Type Y/N:"
+	fight_answer = ""
+	loop do 
+		fight_answer = gets.chomp
+		break if fight_answer == "y" || fight_answer == "n"
+	end
+	system('cls')
+	fight_answer == "y" ? fight_answer = "false" : fight_answer = "true"
+	post_fight = PostFight.new(fight.retain_rank(fight_answer))
+	post_fight.level_up
+	post_fight.amend_memories
+	puts "#{post_fight.winner.fname} #{post_fight.winner.nickname} #{post_fight.winner.lname} wins!"
+	puts "Post-fight press release from #{post_fight.winner.fname}: " + '"' + "#{chat.postfight(post_fight.winner, post_fight.loser)[0]}" + '"' unless !post_fight.winner.is_a?(Enemy)
+	puts "Post-fight press release from #{post_fight.loser.fname}: " + '"' + "#{chat.postfight(post_fight.winner, post_fight.loser)[0]}" + '"' unless !post_fight.loser.is_a?(Enemy)
+	puts ""
+	puts "Press Enter to continue:"
+	loop do 
+		break if gets.chomp == ""
+	end
+	system('cls')
+end
 
 
 
